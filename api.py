@@ -3,23 +3,22 @@ from flask_pymongo import PyMongo
 from sqlalchemy import create_engine
 import sqlalchemy
 
+#################################################
+# Database Setup
+#################################################
+
 rds_connection_string = f"postgres://zsjitnfqerggpe:27480e06806e4393e3e237d266c536ba9b0f7408ac6272551cfa665e694de859@ec2-52-204-113-104.compute-1.amazonaws.com:5432/d63qhs1d38oqh0"
 engine = create_engine(f'postgres://zsjitnfqerggpe:27480e06806e4393e3e237d266c536ba9b0f7408ac6272551cfa665e694de859@ec2-52-204-113-104.compute-1.amazonaws.com:5432/d63qhs1d38oqh0')
 
-# Create an instance of Flask
+#################################################
+# Flask Setup
+#################################################
 app = Flask(__name__)
 
 # Route to render index.html template using 
 @app.route("/")
-def welcome():
-    return (
-        f"Available Routes:<br/>"
-        f"/year2015<br/>"
-        f"/year2016<br/>"
-        f"/year2017<br/>"
-        f"/year2018<br/>"
-        f"/year2019<br/>"
-    )
+def home():
+    return render_template("index.html")
 
 @app.route("/year2015")
 def year2015():
