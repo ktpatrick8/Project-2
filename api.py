@@ -16,9 +16,9 @@ engine = create_engine(f'postgres://zsjitnfqerggpe:27480e06806e4393e3e237d266c53
 app = Flask(__name__)
 
 # Route to render index.html template using 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
-    return render_template("index.html")
+    return render_template('index.html')
 
 @app.route("/year2015")
 def year2015():
@@ -37,6 +37,7 @@ def year2015():
         data['Trust'] = row.trust
         data['Generosity'] = row.generosity
 
+        # countries['Countries'] = data
         countries.append(data)
 
 
@@ -139,6 +140,38 @@ def year2019():
     result["Countries"] = countries
 
     return jsonify(result)
+
+@app.route("/happiness")
+def happiness():
+    result = {}
+    result_set = engine.execute('''select * from year2015 \
+        UNION select * from year2016\
+        UNION select * from year2017\
+        ORDER BY country''')
+    countries = []
+    for row in result_set:
+        if row.country in countries:
+            ""
+        else:
+            countries.append(row.country)
+    result["Countries"] = countries           
+    for row in result_set:
+        data = {}
+        data['Year'] = row.year
+        data['Name'] = row.country
+        data["Rank"] = row.happiness_rank
+        data["Score"] = row.happiness_score
+        data["Economy"] = row.economy
+        data['Family'] = row.family
+        data['Health'] = row.health
+        data['Freedom'] = row.freedom
+        data['Trust'] = row.trust
+        data['Generosity'] = row.generosity
+        countries.append(data)
+    # result["Countries"] = countries 
+
+    return jsonify(result)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
