@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var TITLE = 'CSV Load';
+  var TITLE = 'How Happiness Score Varies between Life Expectancy and GDP';
 
   var POINT_X = 'Health (Life Expectancy)'; // column name for x values in data.csv
   var POINT_X_PREFIX = ''; // prefix for x values, eg 'USD '
@@ -18,7 +18,7 @@ $(document).ready(function() {
                             // if your dataset contains precise radius values
 
   var POINT_NAME = 'Country'; // point names that appear in tooltip
-  var POINT_COLOR = 'rgba(0,0,255,0.7)'; // eg `black` or `rgba(10,100,44,0.8)`
+  var POINT_COLOR = 'rgba(10,100,44,0.8)'; // eg `black` or `rgba(10,100,44,0.8)`
 
   var X_AXIS = 'Life Expectancy'; // x-axis label, label in tooltip
   var Y_AXIS = 'Happiness Score'; // y-axis label, label in tooltip
@@ -26,7 +26,7 @@ $(document).ready(function() {
   var SHOW_GRID = true; // `true` to show the grid, `false` to hide
 
   // Read data file and create a chart
-  $.get('./Year_2015.csv', function(csvString) {
+  $.get('./Year_2016.csv', function(csvString) {
 
     var rows = Papa.parse(csvString, {header: true}).data;
 
@@ -98,7 +98,7 @@ $(document).ready(function() {
               ]
             },
             label: function(tooltipItem, all) {
-              var r = all.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].r * R_DENOMINATOR;
+              var r = all.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].r / R_DENOMINATOR;
               return [
                 X_AXIS + ': ' + POINT_X_PREFIX + tooltipItem.xLabel.toLocaleString() + POINT_X_POSTFIX,
                 Y_AXIS + ': ' + POINT_Y_PREFIX + tooltipItem.yLabel.toLocaleString() + POINT_Y_POSTFIX,
