@@ -154,7 +154,8 @@ def happiness():
             ""
         else:
             countries.append(row.country)
-    result["Countries"] = countries           
+    result["Countries"] = countries      
+
     for row in result_set:
         data = {}
         data['Year'] = row.year
@@ -168,7 +169,7 @@ def happiness():
         data['Trust'] = row.trust
         data['Generosity'] = row.generosity
         countries.append(data)
-    # result["Countries"] = countries 
+    result[""] = countries 
 
     return jsonify(result)
 
