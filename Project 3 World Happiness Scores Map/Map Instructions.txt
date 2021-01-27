@@ -1,0 +1,4 @@
+-color of coutries reflect the happiness scores of the respective countries with the scale reflected in the legend
+-zoom in and out by button in top left or by mousewheel
+-mouseover indicates a selection of a given country by a darker color
+-clicking on a given country zooms into that country full screen and displays a popup on the country that provides the population of the country and the UN Income Category
