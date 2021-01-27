@@ -26,7 +26,7 @@ $(document).ready(function() {
   var SHOW_GRID = true; // `true` to show the grid, `false` to hide
 
   // Read data file and create a chart
-  $.get('./Year_2016.csv', function(csvString) {
+  $.get('Year_2016.csv', function(csvString) {
 
     var rows = Papa.parse(csvString, {header: true}).data;
 
