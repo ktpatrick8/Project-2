@@ -78,7 +78,7 @@ function optionChanged(option) {
     // Fetch new data each time a new sample is selected
     buildCharts(option);
     buildMetadata(option);
-    functiongetRandomColor();
+    // functiongetRandomColor();
 };
 
 // function getRandomColor() {
